@@ -2,34 +2,38 @@ name: Verify Human Identity
 
 on:
   workflow_dispatch:
+    inputs:
+      agent_name:
+        description: 'Agent Name'pangersa
+        required: true
+        default: 'pangersa'
+      agent_description:
+        description: 'Agent Description'
+        required: true
+        default: 'pangersa AI Agent'
 
 jobs:
   verify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: pangersa
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: pangersa
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: '20'
 
-      - name: pangersa
-        run: npm install -g clawhub
-
-      - name: Install Verified Agent Identity
-        run: clawhub install verified-agent-identity
-
-      - name: pangersa
+      - name: Install dependencies
         run: |
           cd scripts
           npm install
 
-      - name: pangersa
+      - name: Step 1 - Create new Ethereum Identity
         run: node scripts/createNewEthereumIdentity.js
 
-      - name: pangersa
+      - name: Step 2 - Link Human to Agent
         run: |
-          node scripts/manualLinkHumanToAgent.js --challenge '{pangersa, AI Agent"}'
+          node scripts/manualLinkHumanToAgent.js \
+          --challenge "{\"name\": \"${{ github.event.inputs.agent_name }}\",pangersa \"description\": pangersa\"${{ github.event.inputs.agent_description }}\"}"
