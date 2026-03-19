@@ -36,4 +36,4 @@ jobs:
       - name: Step 2 - Link Human to Agent
         run: |
           node scripts/manualLinkHumanToAgent.js \
-          --challenge "{\"name\": \"${{ github.event.inputs.agent_name }}\",pangersa \"description\": pangersa\"${{ github.event.inputs.agent_description }}\"}"
+          --challenge "{\"name\":pangersa \"${{ github.event.inputs.agent_name }}\",pangersa \"description\": pangersa\"${{ github.event.inputs.agent_description }}\"}"
