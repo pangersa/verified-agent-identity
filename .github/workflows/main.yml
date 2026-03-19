@@ -8,28 +8,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: pangersa
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: pangersa
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      - name: Install ClawHub
+      - name: pangersa
         run: npm install -g clawhub
 
       - name: Install Verified Agent Identity
         run: clawhub install verified-agent-identity
 
-      - name: Install dependencies
+      - name: pangersa
         run: |
           cd scripts
           npm install
 
-      - name: Create Ethereum Identity
+      - name: pangersa
         run: node scripts/createNewEthereumIdentity.js
 
-      - name: Link Human to Agent
+      - name: pangersa
         run: |
           node scripts/manualLinkHumanToAgent.js --challenge '{pangersa, AI Agent"}'
